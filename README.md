@@ -79,6 +79,9 @@ preliminary work to be done (such as creating the data to use).
 ``` r
 acs2017_ny$LABFORCE <- as.factor(acs2017_ny$LABFORCE)
 levels(acs2017_ny$LABFORCE) <- c("NA","Not in LF","in LF")
+
+acs2017_ny$MARST <- as.factor(acs2017_ny$MARST)
+levels(acs2017_ny$MARST) <- c("married spouse present","married spouse absent","separated","divorced","widowed","never married")
 ```
 
 What is the difference between “NA” as label and Not in the Labor Force?
@@ -87,19 +90,7 @@ Make sure you understand. (Hint, look at ages in each group).
 In general it is a good idea to check summary stats before doing fancier
 models. What fraction of people, say, 55-65, are in the labor force?
 What about other age ranges? What would you guess are other important
-predictors?
-
-``` r
-pick_use1 <- (acs2017_ny$AGE >25) & (acs2017_ny$AGE <= 55)
-dat_use1 <- subset(acs2017_ny, pick_use1)
-
-dat_use1$LABFORCE <- droplevels(dat_use1$LABFORCE) # actually not necessary since logit is smart enough to drop unused levels, but helps my personal sense of order
-
-acs2017_ny$MARST <- as.factor(acs2017_ny$MARST)
-levels(acs2017_ny$MARST) <- c("married spouse present","married spouse absent","separated","divorced","widowed","never married")
-```
-
-For example,
+predictors? For example,
 
 ``` r
 acs2017_ny$age_bands <- cut(acs2017_ny$AGE,breaks=c(0,25,35,45,55,65,100))
@@ -107,6 +98,15 @@ table(acs2017_ny$age_bands,acs2017_ny$LABFORCE)
 ```
 
 (although kable package could do nicer, if you want to play)
+
+After data transforms, create your subset, for example,
+
+``` r
+pick_use1 <- (acs2017_ny$AGE >25) & (acs2017_ny$AGE <= 55)
+dat_use1 <- subset(acs2017_ny, pick_use1)
+
+dat_use1$LABFORCE <- droplevels(dat_use1$LABFORCE) # actually not necessary since logit is smart enough to drop unused levels, but helps my personal sense of order
+```
 
 Baseline model,
 
@@ -119,7 +119,8 @@ summary(model_logit1)
 ```
 
 What other X variables might you add? Maybe some interactions? LOTS OF
-INTERACTIONS?
+INTERACTIONS? What other subsets? What changes about results with
+different subsets?
 
 For homework, I will ask for predicted values so you can start to figure
 out how to get those.
