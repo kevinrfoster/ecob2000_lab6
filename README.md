@@ -1,0 +1,160 @@
+Lab 6
+================
+
+<p style="color:rgb(182,18,27);font-family:corbel">
+
+Econ B2000, MA Econometrics
+
+</p>
+
+<p style="color:rgb(182,18,27);font-family:corbel">
+
+Kevin R Foster, the Colin Powell School at the City College of New York,
+CUNY
+
+</p>
+
+<p style="color:rgb(182,18,27);font-family:corbel">
+
+Fall 2020
+
+</p>
+
+Form a group.
+
+*First* a note to advance your programming. The following bits of code
+do the same thing:
+
+``` r
+attach(acs2017_ny)
+model_v1 <- lm(INCWAGE ~ AGE)
+detach()
+
+model_v2 <- lm(acs2017_ny$INCWAGE ~ acs2017_ny$AGE)
+
+model_v3 <- lm(INCWAGE ~ AGE, data = acs2017_ny)
+```
+
+I prefer the last one, v3. I think v2 is too verbose (especially once
+you have dozens of variables in your model) while v1 is liable to errors
+since, if the “attach” command gets too far separated from the “lm()”
+within your code chunks, can have unintended consequences. Later you
+will be doing robustness checks, where you do the same regression on
+slightly different subsets. (For example, compare a model fit on all
+people 18-65 vs people 25-55 vs other age ranges.) In that case v3
+becomes less verbose as well as less liable to have mistakes.
+
+However specifying the dataset, as with v3, means that any preliminary
+data transformations should modify the original dataset. So if you
+create newvarb \<- f(oldvarb), you have to carefully set
+dataset\(newvarb <- f(dataset\)oldvarb) and think about which dataset
+gets that transformation.
+
+## Lab 6
+
+Anyway, on to the lab. This week we move to logit and probit models.
+These are suited for when the dependent y variable takes values of just
+0 or 1.
+
+We will look at labor force participation, which is an important aspect
+of the economy – who chooses to work (where those who are unemployed but
+looking for work are considered part of the labor force).
+
+The generic format for a logit model is
+
+``` r
+model_logit1 <- glm(LABFORCE ~ AGE,
+            family = binomial, data = dat_use1)
+```
+
+where obviously you can expand the set of independent X variables.
+
+The main differences from lm() are that the call now has a g in it,
+glm(), for Generalized Linear Model; and that it includes the bit about
+family = binomial.
+
+*Before you rush off to estimate that* just note that there is some
+preliminary work to be done (such as creating the data to use).
+
+``` r
+acs2017_ny$LABFORCE <- as.factor(acs2017_ny$LABFORCE)
+levels(acs2017_ny$LABFORCE) <- c("NA","Not in LF","in LF")
+```
+
+What is the difference between “NA” as label and Not in the Labor Force?
+Make sure you understand. (Hint, look at ages in each group).
+
+In general it is a good idea to check summary stats before doing fancier
+models. What fraction of people, say, 55-65, are in the labor force?
+What about other age ranges? What would you guess are other important
+predictors?
+
+``` r
+pick_use1 <- (acs2017_ny$AGE >25) & (acs2017_ny$AGE <= 55)
+dat_use1 <- subset(acs2017_ny, pick_use1)
+
+dat_use1$LABFORCE <- droplevels(dat_use1$LABFORCE) # actually not necessary since logit is smart enough to drop unused levels, but helps my personal sense of order
+
+acs2017_ny$MARST <- as.factor(acs2017_ny$MARST)
+levels(acs2017_ny$MARST) <- c("married spouse present","married spouse absent","separated","divorced","widowed","never married")
+```
+
+For example,
+
+``` r
+acs2017_ny$age_bands <- cut(acs2017_ny$AGE,breaks=c(0,25,35,45,55,65,100))
+table(acs2017_ny$age_bands,acs2017_ny$LABFORCE)
+```
+
+(although kable package could do nicer, if you want to play)
+
+Baseline model,
+
+``` r
+model_logit1 <- glm(LABFORCE ~ AGE + I(AGE^2) + female + AfAm + Asian + race_oth + Hispanic 
+            + educ_hs + educ_somecoll + educ_college + educ_advdeg 
+            + MARST,
+            family = binomial, data = dat_use1)
+summary(model_logit1)
+```
+
+What other X variables might you add? Maybe some interactions? LOTS OF
+INTERACTIONS?
+
+For homework, I will ask for predicted values so you can start to figure
+out how to get those.
+
+Do the X variables have the expected signs and patterns of significance?
+Explain if there is a plausible causal link from X variables to Y and
+not the reverse. Explain your results, giving details about the
+estimation, some predicted values, and providing any relevant graphics.
+Impress.
+
+Also estimate a probit model (details in Lecture Notes) and OLS, with
+the same X and Y variables. Compare the results, such as coefficients
+and predicted values. If you’re eager, try to split the sample into
+training and test data, then compare which model predicts better in the
+sample that it hasn’t seen yet.
+
+## Appendix
+
+To clear up some of the definitions,
+
+``` r
+acs2017_ny$EMPSTAT <- as.factor(acs2017_ny$EMPSTAT)
+levels(acs2017_ny$EMPSTAT) <- c("NA","Employed","Unemployed","Not in LF")
+
+acs2017_ny$LABFORCE <- as.factor(acs2017_ny$LABFORCE)
+levels(acs2017_ny$LABFORCE) <- c("NA","Not in LF","in LF")
+
+acs2017_ny$CLASSWKR <- as.factor(acs2017_ny$CLASSWKR)
+levels(acs2017_ny$CLASSWKR) <- c("NA","self employed","work for wages")
+
+acs2017_ny$WKSWORK2 <- as.factor(acs2017_ny$WKSWORK2)
+levels(acs2017_ny$WKSWORK2) <- c("NA","1-13 wks","14-26 wks","27-39 wks","40-47 wks","48-49 wks","50-52 wks")
+# although note that making this a factor breaks some earlier code where we used (WKSWORK2 > 4) so you might not want to run that code or else change to WKSWORK2_factor <- as.factor(WKSWORK2). Which is arguably better for various other reasons.
+
+# these help clarify how these definitions work together
+table(acs2017_ny$EMPSTAT,acs2017_ny$LABFORCE)
+table(acs2017_ny$EMPSTAT,acs2017_ny$CLASSWKR)
+```
