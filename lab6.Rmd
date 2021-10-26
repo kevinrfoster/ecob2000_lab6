@@ -4,10 +4,9 @@ font-family: 'Corbel'
 output: github_document
 ---
   
-
-<p style="color:rgb(182,18,27);font-family:corbel">Econ B2000, MA Econometrics</p>
-<p style="color:rgb(182,18,27);font-family:corbel">Kevin R Foster, the Colin Powell School at the City College of New York, CUNY</p>
-<p style="color:rgb(182,18,27);font-family:corbel">Fall 2020</p>
+### Econ B2000, MA Econometrics
+### Kevin R Foster, the Colin Powell School at the City College of New York, CUNY
+### Fall 2021
 
 Form a group.
 
@@ -22,64 +21,65 @@ model_v2 <- lm(acs2017_ny$INCWAGE ~ acs2017_ny$AGE)
 model_v3 <- lm(INCWAGE ~ AGE, data = acs2017_ny)
 
 ```
-I prefer the last one, v3. I think v2 is too verbose (especially once you have dozens of variables in your model) while v1 is liable to errors since, if the "attach" command gets too far separated from the "lm()" within your code chunks, can have unintended consequences. Later you will be doing robustness checks, where you do the same regression on slightly different subsets. (For example, compare a model fit on all people 18-65 vs people 25-55 vs other age ranges.) In that case v3 becomes less verbose as well as less liable to have mistakes.
+I prefer the last one, v3. I think v2 is too verbose (especially once you have dozens of variables in your model) while v1 is liable to errors since, if the `attach` command gets too far separated from the `lm()` within your code chunks, can have unintended consequences. Later you will be doing robustness checks, where you do the same regression on slightly different subsets. (For example, compare a model fit on all people 18-65 vs people 25-55 vs other age ranges.) In that case v3 becomes less verbose as well as less liable to have mistakes.
 
-However specifying the dataset, as with v3, means that any preliminary data transformations should modify the original dataset. So if you create newvarb <- f(oldvarb), you have to carefully set dataset$newvarb <- f(dataset$oldvarb) and think about which dataset gets that transformation.
+However specifying the dataset, as with v3, means that any preliminary data transformations should modify the original dataset. So if you create `newvarb <- f(oldvarb)`, you have to carefully set `dataset$newvarb <- f(dataset$oldvarb)` and think about which dataset gets that transformation.
 
 
 ## Lab 6
 
 Anyway, on to the lab. This week we move to logit and probit models. These are suited for when the dependent y variable takes values of just 0 or 1.
 
-We will look at labor force participation, which is an important aspect of the economy -- who chooses to work (where those who are unemployed but looking for work are considered part of the labor force).
+We will use the Household Pulse data, from midterm, and consider people's choice to get vaxx.
 
 The generic format for a logit model is
 ```{r eval=FALSE}
-model_logit1 <- glm(LABFORCE ~ AGE,
-            family = binomial, data = dat_use1)
+model_logit1 <- glm(vaxx ~ EEDUC,
+            family = binomial, data = Household_Pulse_data)
 ```
 where obviously you can expand the set of independent X variables.
 
-The main differences from lm() are that the call now has a g in it, glm(), for Generalized Linear Model; and that it includes the bit about family = binomial.
+The main differences from lm() are that the call now has a g in it, `glm()`, for Generalized Linear Model; and that it includes the bit about `family = binomial`.
 
 *Before you rush off to estimate that* just note that there is some preliminary work to be done (such as creating the data to use).
 
 ```{r eval=FALSE}
-acs2017_ny$LABFORCE <- as.factor(acs2017_ny$LABFORCE)
-levels(acs2017_ny$LABFORCE) <- c("NA","Not in LF","in LF")
-
-acs2017_ny$MARST <- as.factor(acs2017_ny$MARST)
-levels(acs2017_ny$MARST) <- c("married spouse present","married spouse absent","separated","divorced","widowed","never married")
+Household_Pulse_data$vaxx <- (Household_Pulse_data$RECVDVACC == "yes got vaxx")
+is.na(Household_Pulse_data$vaxx) <- which(Household_Pulse_data$RECVDVACC == "NA") 
 
 ```
-What is the difference between "NA" as label and Not in the Labor Force? Make sure you understand. (Hint, look at ages in each group).
+What is the difference between "NA" as label of a factor and actual NA that R understands? Mostly note that `sum(is.na(Household_Pulse_data$RECVDVACC))` evaluates as zero. There are valid reasons to do one or the other, just make it a conscious choice.
 
-In general it is a good idea to check summary stats before doing fancier models. What fraction of people, say, 55-65, are in the labor force? What about other age ranges? What would you guess are other important predictors? For example,
+In general it is a good idea to check summary stats before doing fancier models. For example look at the fractions by education, maybe do some statistics like you ~~did~~ should have done in Q1 of exam.
 
 ```{r eval=FALSE}
-acs2017_ny$age_bands <- cut(acs2017_ny$AGE,breaks=c(0,25,35,45,55,65,100))
-table(acs2017_ny$age_bands,acs2017_ny$LABFORCE)
+table(Household_Pulse_data$vaxx,Household_Pulse_data$EEDUC)
 ```
 (although kable package could do nicer, if you want to play)
 
-After data transforms, create your subset, for example,
-```{r eval=FALSE}
-pick_use1 <- (acs2017_ny$AGE >25) & (acs2017_ny$AGE <= 55)
-dat_use1 <- subset(acs2017_ny, pick_use1)
+Note that R is quite tolerant of using a factor as dependent variable, although you should be paranoid about how it chooses the ordering. In this case, the ordering works out, but in general you should check things like `summary(Household_Pulse_data$vaxx)` vs `summary(as.numeric(Household_Pulse_data$vaxx))`. You could also create `vaxx_factor <- as.factor(Household_Pulse_data$vaxx)` -- check how it assigns `levels(vaxx_factor)`. You could set those, for example, `levels(vaxx_factor) <- c("no","yes")` or whatever else. (You could even, if you were diabolical, set levels to be ~~c(1,0)~~ -- yes in that order!, but then don't come crying to me when skynet targets you for a nuke.) Of course you wouldn't do that, but you might have created a variable, 'notvaxxed <-` that would have opposite ordering.
 
-dat_use1$LABFORCE <- droplevels(dat_use1$LABFORCE) # actually not necessary since logit is smart enough to drop unused levels, but helps my personal sense of order
+Seriously, though, R can be weirdly tolerant. For example you could run `glm(RECVDVACC ~ EEDUC,family = binomial)` and it would happily chug along without throwing any errors -- even though RECVDVACC has **THREE** levels and doesn't really fit with **bi**nomial. I know, I know, there are a thousand other things where R fetches an error for the tiniest thing but with these big problems it just trots along, whatever you say boss. So that's one rationale to call `as.numeric` to make sure that what you think is 0 and 1 is, actually, what R thinks is 0 and 1.
+
+As usual when you do your analysis you might want to subset, for example,
+```{r eval=FALSE}
+pick_use1 <- (Household_Pulse_data$REGION == "Northeast") # just for example!
+dat_use1 <- subset(Household_Pulse_data, pick_use1)
+
+# and to be finicky, might want to use this for factors after subsetting in case some get lost
+dat_use1$RECVDVACC <- droplevels(dat_use1$RECVDVACC) 
 
 ```
 
-Baseline model,
+So start from this baseline model and launch ahead,
 ```{r eval=FALSE}
-model_logit1 <- glm(LABFORCE ~ AGE + I(AGE^2) + female + AfAm + Asian + race_oth + Hispanic 
-            + educ_hs + educ_somecoll + educ_college + educ_advdeg 
-            + MARST,
+model_logit1 <- glm(vaxx ~ TBIRTH_YEAR + EEDUC + MS + RRACE + RHISPANIC + GENID_DESCRIBE,
             family = binomial, data = dat_use1)
 summary(model_logit1)
 
 ```
+
+Note that they give data on age as "TBIRTH_YEAR" so if you put that into a regression, the coefficient sign swaps from what we usually think of, if we had AGE in the regression. Could define `AGE <- 2021 - TBIRTH_YEAR`. A regression, `Y ~ AGE` might have a positive coefficient on Age, that as person gets older Y tends to increase. It would then have a *negative* coefficient on TBIRTH_YEAR, that as person's birth year goes up (therefore they are younger) then Y tends to decrease.
 
 What other X variables might you add? Maybe some interactions? LOTS OF INTERACTIONS? What other subsets? What changes about results with different subsets?
 
@@ -89,30 +89,6 @@ Do the X variables have the expected signs and patterns of significance? Explain
 
 Also estimate a probit model (details in Lecture Notes) and OLS, with the same X and Y variables. Compare the results, such as coefficients and predicted values. If you're eager, try to split the sample into training and test data, then compare which model predicts better in the sample that it hasn't seen yet.
 
-
-## Appendix
-
-To clear up some of the definitions,
-```{r eval=FALSE}
-acs2017_ny$EMPSTAT <- as.factor(acs2017_ny$EMPSTAT)
-levels(acs2017_ny$EMPSTAT) <- c("NA","Employed","Unemployed","Not in LF")
-
-acs2017_ny$LABFORCE <- as.factor(acs2017_ny$LABFORCE)
-levels(acs2017_ny$LABFORCE) <- c("NA","Not in LF","in LF")
-
-acs2017_ny$CLASSWKR <- as.factor(acs2017_ny$CLASSWKR)
-levels(acs2017_ny$CLASSWKR) <- c("NA","self employed","work for wages")
-
-acs2017_ny$WKSWORK2 <- as.factor(acs2017_ny$WKSWORK2)
-levels(acs2017_ny$WKSWORK2) <- c("NA","1-13 wks","14-26 wks","27-39 wks","40-47 wks","48-49 wks","50-52 wks")
-# although note that making this a factor breaks some earlier code where we used (WKSWORK2 > 4) so you might not want to run that code or else change to WKSWORK2_factor <- as.factor(WKSWORK2). Which is arguably better for various other reasons.
-
-# these help clarify how these definitions work together
-table(acs2017_ny$EMPSTAT,acs2017_ny$LABFORCE)
-table(acs2017_ny$EMPSTAT,acs2017_ny$CLASSWKR)
-
-
-```
 
 
 
