@@ -1,0 +1,273 @@
+Details_of_IND_code,IND Code
+Crop production  ,0170
+Animal production and aquaculture,0180
+Forestry except logging ,0190
+Logging ,0270
+"Fishing, hunting and trapping ",0280
+Support activities for agriculture and forestry ,0290
+Oil and gas extraction ,0370
+Coal mining ,0380
+Metal ore mining ,0390
+Nonmetallic mineral mining and quarrying ,0470
+Not specified type of mining,0480
+Support activities for mining ,0490
+Construction (the cleaning of buildings and dwellings is incidental during construction and immediately after construction),0770
+"Animal food, grain and oilseed milling ",1070
+Sugar and confectionery products ,1080
+Fruit and vegetable preserving and specialty food manufacturing              ,1090
+Dairy product manufacturing,1170
+Animal slaughtering and processing ,1180
+Retail bakeries ,1190
+"Bakeries and tortilla manufacturing, except retail bakeries ",1270
+"Seafood and other miscellaneous foods, n.e.c. ",1280
+Not specified food industries,1290
+Beverage manufacturing,1370
+Tobacco manufacturing,1390
+"Fiber, yarn, and thread mills ",1470
+"Fabric mills, except knitting mills",1480
+Textile and fabric finishing and fabric coating mills ,1490
+Carpet and rug mills,1570
+"Textile product mills, except carpet and rug",1590
+"Knitting fabric mills, and apparel knitting mills ",1670
+"Cut and sew, and apparel accessories and other apparel manufacturing",1691
+Footwear manufacturing,1770
+"Leather and hide tanning and finishing, and other leather and allied product manufacturing",1790
+"Pulp, paper, and paperboard mills ",1870
+Paperboard container manufacturing,1880
+Miscellaneous paper and pulp products  ,1890
+Printing and related support activities ,1990
+Petroleum refining ,2070
+Miscellaneous petroleum and coal products ,2090
+"Resin, synthetic rubber, and fibers and filaments manufacturing   ",2170
+Agricultural chemical manufacturing  ,2180
+Pharmaceutical and medicine manufacturing,2190
+"Paint, coating, and adhesive manufacturing ",2270
+"Soap, cleaning compound, and cosmetics manufacturing ",2280
+Industrial and miscellaneous chemicals ,2290
+Plastics product manufacturing ,2370
+Tire manufacturing ,2380
+"Rubber products, except tires, manufacturing ",2390
+"Pottery, ceramics, and plumbing fixture manufacturing  ",2470
+Clay building material and refractories manufacturing,2480
+Glass and glass product manufacturing ,2490
+"Cement, concrete, lime, and gypsum product manufacturing ",2570
+Miscellaneous nonmetallic mineral product manufacturing ,2590
+Iron and steel mills and steel product manufacturing  ,2670
+Aluminum production and processing  ,2680
+Nonferrous metal (except aluminum) production and processing ,2690
+Foundries ,2770
+Metal forgings and stampings ,2780
+Cutlery and hand tool manufacturing  ,2790
+"Structural metals, and boiler, tank, and shipping container manufacturing ",2870
+"Machine shops; turned product; screw, nut, and bolt manufacturing  ",2880
+"Coating, engraving, heat treating, and allied activities ",2890
+Ordnance ,2970
+Miscellaneous fabricated metal products manufacturing             ,2980
+Not specified metal industries,2990
+Agricultural implement manufacturing ,3070
+"Construction, and mining and oil and gas field machinery manufacturing ",3080
+Commercial and service industry machinery manufacturing,3095
+Metalworking machinery manufacturing,3170
+"Engine, turbine, and power transmission equipment manufacturing",3180
+"Machinery manufacturing, n.e.c. or not specified",3291
+Computer and peripheral equipment manufacturing,3365
+"Communications, audio, and video equipment manufacturing",3370
+"Navigational, measuring, electromedical, and control instruments manufacturing",3380
+"Electronic component and product manufacturing, n.e.c. ",3390
+Household appliance manufacturing ,3470
+"Electric lighting and electrical equipment manufacturing, and other electrical component manufacturing, n.e.c.",3490
+Motor vehicles and motor vehicle equipment manufacturing ,3570
+Aircraft and parts manufacturing,3580
+Aerospace products and parts manufacturing ,3590
+Railroad rolling stock manufacturing,3670
+Ship and boat building ,3680
+Other transportation equipment manufacturing,3690
+Sawmills and wood preservation ,3770
+"Veneer, plywood, and engineered wood products ",3780
+Prefabricated wood buildings and mobile homes manufacturing,3790
+Miscellaneous wood products ,3875
+Furniture and related product manufacturing ,3895
+Medical equipment and supplies manufacturing,3960
+"Sporting and athletic goods, and doll, toy and game manufacturing",3970
+"Miscellaneous manufacturing, n.e.c.  ",3980
+Not specified manufacturing industries,3990
+Motor vehicle and motor vehicle parts and supplies merchant wholesalers,4070
+Furniture and home furnishing merchant wholesalers   ,4080
+Lumber and other construction materials merchant wholesalers ,4090
+Professional and commercial equipment and supplies merchant wholesalers,4170
+"Metals and minerals, except petroleum, merchant wholesalers                         ",4180
+Household appliances and electrical and electronic goods merchant wholesalers ,4195
+"Hardware, and plumbing and heating equipment, and supplies merchant wholesalers",4265
+"Machinery, equipment, and supplies merchant wholesalers     ",4270
+Recyclable material merchant wholesalers ,4280
+Miscellaneous durable goods merchant wholesalers    ,4290
+Paper and paper products merchant wholesalers ,4370
+"Drugs, sundries, and chemical and allied products merchant  wholesalers ",4380
+"Apparel, piece goods, and notions merchant wholesalers",4390
+Grocery and related product merchant wholesalers ,4470
+Farm product raw material merchant wholesalers ,4480
+Petroleum and petroleum products merchant wholesalers ,4490
+Alcoholic beverages merchant wholesalers ,4560
+Farm supplies merchant wholesalers ,4570
+Miscellaneous nondurable goods merchant wholesalers ,4580
+Wholesale electronic markets and agents and brokers ,4585
+Not specified wholesale trade,4590
+Automobile dealers ,4670
+Other motor vehicle dealers ,4680
+"Automotive parts, accessories, and tire stores",4690
+Furniture and home furnishings stores ,4770
+Household appliance stores ,4780
+Electronics Stores,4795
+Building material and supplies dealers  ,4870
+Hardware stores ,4880
+Lawn and garden equipment and supplies stores ,4890
+Supermarkets and other grocery (except convenience) stores,4971
+Convenience Stores,4972
+Specialty food stores,4980
+"Beer, wine, and liquor stores ",4990
+Pharmacies and drug stores ,5070
+"Health and personal care, except drug, stores ",5080
+Gasoline stations ,5090
+Clothing stores ,5170
+Shoe stores ,5180
+"Jewelry, luggage, and leather goods stores ",5190
+"Sporting goods, and hobby and toy stores ",5275
+"Sewing, needlework, and piece goods stores ",5280
+Musical instrument and supplies stores ,5295
+Book stores and news dealers ,5370
+Department stores ,5381
+"General merchandise stores, including warehouse clubs and supercenters ",5391
+Florists,5470
+Office supplies and stationery stores ,5480
+Used merchandise stores ,5490
+"Gift, novelty, and souvenir shops ",5570
+Miscellaneous retail stores ,5580
+Electronic shopping and mail-order houses,5593
+Vending machine operators ,5670
+Fuel dealers ,5680
+Other direct selling establishments,5690
+Not specified retail trade,5790
+Air transportation ,6070
+Rail transportation ,6080
+Water transportation ,6090
+Truck transportation ,6170
+Bus service and urban transit ,6180
+Taxi and limousine service ,6190
+Pipeline transportation ,6270
+Scenic and sightseeing transportation ,6280
+Services incidental to transportation ,6290
+Postal Service ,6370
+Couriers and messengers ,6380
+Warehousing and storage ,6390
+"Electric power generation, transmission and distribution",0570
+Natural gas distribution ,0580
+"Electric and gas, and other combinations ",0590
+"Water, steam, air-conditioning, and irrigation systems ",0670
+Sewage treatment facilities ,0680
+Not specified utilities ,0690
+Newspaper publishers,6470
+"Periodical, book, and directory publishers",6480
+Software publishers,6490
+Motion pictures and video industries,6570
+Sound recording industries,6590
+Broadcasting (except internet),6670
+Internet publishing and broadcasting and web search portals,6672
+Wired telecommunications carriers ,6680
+"Telecommunications, except wired telecommunications carriers ",6690
+"Data processing, hosting, and related services",6695
+Libraries and archives,6770
+"Other information services, except libraries and archives, and internet publishing and broadcasting and web search portals",6780
+Banking and related activities,6870
+"Savings institutions, including credit unions ",6880
+Nondepository credit and related activities,6890
+"Securities, commodities, funds, trusts, and other financial investments",6970
+Insurance carriers,6991
+"Agencies, brokerages, and other insurance related activities",6992
+"Lessors of real estate, and offices of real estate agents and brokers",7071
+"Real estate property managers, offices of real estate appraisers, and other activities related to real estate ",7072
+,
+Automotive equipment rental and leasing ,7080
+Other consumer goods rental,7181
+"Commercial, industrial, and other intangible assets rental and leasing",7190
+Legal services ,7270
+"Accounting, tax preparation, bookkeeping, and payroll services",7280
+"Architectural, engineering, and related services ",7290
+Specialized design services ,7370
+Computer systems design and related services ,7380
+"Management, scientific, and technical consulting services",7390
+Scientific research and development services ,7460
+"Advertising, public relations, and related services",7470
+Veterinary services ,7480
+"Other professional, scientific, and technical services ",7490
+Management of companies and enterprises ,7570
+Employment services ,7580
+Business support services ,7590
+Travel arrangements and reservation services ,7670
+Investigation and security services ,7680
+Services to buildings and dwellings (except cleaning during construction and immediately after construction) ,7690
+Landscaping services,7770
+Other administrative and other support services ,7780
+Waste management and remediation services ,7790
+Elementary and secondary schools ,7860
+"Colleges, universities, and professional schools, including junior colleges",7870
+"Business, technical, and trade schools and training ",7880
+"Other schools and instruction, and educational support services ",7890
+Offices of physicians ,7970
+Offices of dentists ,7980
+Offices of chiropractors ,7990
+Offices of optometrists ,8070
+Offices of other health practitioners  ,8080
+Outpatient care centers ,8090
+Home health care services ,8170
+Other health care services ,8180
+"General medical and surgical hospitals, and specialty (except psychiatric and substance abuse) hospitals",8191
+Psychiatric and substance abuse hospitals,8192
+Nursing care facilities (skilled nursing facilities),8270
+"Residential care facilities, except skilled nursing facilities",8290
+Individual and family services ,8370
+"Community food and housing, and emergency services ",8380
+Vocational rehabilitation services ,8390
+Child day care services ,8470
+Performing arts companies ,8561
+Spectator sports,8562
+"Promoters of performing arts, sports, and similar events, agents and managers for artists, athletes, entertainers, and other public figures ",8563
+"Independent artists, writers, and performers",8564
+"Museums, art galleries, historical sites, and similar institutions",8570
+Bowling centers ,8580
+"Other amusement, gambling, and recreation industries   ",8590
+Traveler accommodation ,8660
+"Recreational vehicle parks and camps, and rooming and boarding houses, dormitories, and workers' camps",8670
+Restaurants and other food services ,8680
+"Drinking places, alcoholic beverages ",8690
+Automotive repair and maintenance ,8770
+Car washes,8780
+Electronic and precision equipment repair and maintenance,8790
+Commercial and industrial machinery and equipment repair and maintenance,8870
+Personal and household goods repair and maintenance ,8891
+Barber shops ,8970
+Beauty salons ,8980
+Nail salons and other personal care services  ,8990
+Drycleaning and laundry services ,9070
+"Funeral homes, and cemeteries and crematories ",9080
+Other personal services ,9090
+Religious organizations ,9160
+"Civic, social, advocacy organizations, and grantmaking and giving services",9170
+Labor unions,9180
+"Business, professional, political, and similar organizations",9190
+Private households ,9290
+Executive offices and legislative bodies ,9370
+Public finance activities ,9380
+Other general government and support ,9390
+"Justice, public order, and safety activities ",9470
+Administration of human resource programs  ,9480
+Administration of environmental quality and housing programs ,9490
+Administration of economic programs and space research,9570
+National security and international affairs ,9590
+U. S. Army,9670
+U. S. Air Force,9680
+U. S. Navy,9690
+U. S. Marines,9770
+U. S. Coast Guard,9780
+"Armed Forces, Branch not specified",9790
+Military Reserves or National Guard,9870
+"Unemployed, last worked 5 years ago or earlier or never worked",9920
